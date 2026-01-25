@@ -1,0 +1,11 @@
+WITH temp AS(
+    SELECT num, COUNT(num) AS count
+    FROM MyNumbers
+    GROUP BY num
+)
+
+SELECT MAX(m.num) AS num
+FROM temp t
+JOIN MyNumbers m
+ON t.num = m.num
+AND t.count = 1
