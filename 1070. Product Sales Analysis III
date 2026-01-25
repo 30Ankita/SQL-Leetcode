@@ -1,0 +1,13 @@
+WITH temp AS(
+    SELECT MIN(year) AS first_year, product_id FROM Sales
+    GROUP BY product_id
+)
+
+
+
+SELECT 
+s.product_id, t.first_year, s.quantity, s.price
+FROM temp t
+JOIN Sales s
+ON t.first_year = s.year
+AND t.product_id = s.product_id
